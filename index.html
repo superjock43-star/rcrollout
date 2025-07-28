@@ -539,7 +539,7 @@
         if (!appState.locks.spur) {
           appState.values.spurGear = Math.max(
             50,
-            (appState.values.spurGear || 87) - 1
+            (appState.values.spurGear || 76) - 1
           );
           updateUI();
           elements.spurGear.value = appState.values.spurGear;
@@ -552,7 +552,7 @@
         if (!appState.locks.spur) {
           appState.values.spurGear = Math.min(
             150,
-            (appState.values.spurGear || 87) + 1
+            (appState.values.spurGear || 76) + 1
           );
           updateUI();
           elements.spurGear.value = appState.values.spurGear;
