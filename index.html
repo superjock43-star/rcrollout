@@ -188,7 +188,7 @@
             max="80"
             step="1"
             class="flex-1 px-3 py-2 text-base text-center border-t border-b border-gray-600 bg-gray-700 text-white"
-            placeholder="25"
+            placeholder="40"
           />
           <button
             id="pinionUp"
@@ -304,8 +304,8 @@
       },
       values: {
         tyreDiameter: 42.5,
-        spurGear: 76,         // <-- Default changed to 76
-        pinionGear: 25,
+        spurGear: 76,
+        pinionGear: 40,      // <-- Changed to 40
         desiredRollout: 38.0,
       },
     };
@@ -553,7 +553,7 @@
         e.preventDefault();
         appState.values.pinionGear = Math.max(
           10,
-          (appState.values.pinionGear || 25) - 1
+          (appState.values.pinionGear || 40) - 1
         );
         updateUI();
         elements.pinionGear.value = appState.values.pinionGear;
@@ -564,7 +564,7 @@
         e.preventDefault();
         appState.values.pinionGear = Math.min(
           80,
-          (appState.values.pinionGear || 25) + 1
+          (appState.values.pinionGear || 40) + 1
         );
         updateUI();
         elements.pinionGear.value = appState.values.pinionGear;
@@ -576,7 +576,7 @@
         appState = {
           mode: "standard",
           locks: { tyre: false, spur: false },
-          values: { tyreDiameter: 42.5, spurGear: 76, pinionGear: 25, desiredRollout: 38.0 }, // <-- Default changed to 76
+          values: { tyreDiameter: 42.5, spurGear: 76, pinionGear: 40, desiredRollout: 38.0 }, // <-- Changed to 40
         };
         updateUI();
       });
