@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>RC Rollout Calculator</title>
-  <!-- Tailwind CSS from CDN (works for GitHub Pages!) -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -28,7 +27,6 @@
     input[type="number"] {
       -moz-appearance: textfield;
     }
-    /* Custom mode button styling */
     .mode-btn {
       background: transparent;
       color: #a1a1aa;
@@ -150,7 +148,7 @@
               max="150"
               step="1"
               class="flex-1 px-3 py-2 text-base text-center border-t border-b border-gray-600 bg-gray-700 text-white"
-              placeholder="87"
+              placeholder="76"
             />
             <button
               id="spurUp"
@@ -306,7 +304,7 @@
       },
       values: {
         tyreDiameter: 42.5,
-        spurGear: 87,
+        spurGear: 76,         // <-- Default changed to 76
         pinionGear: 25,
         desiredRollout: 38.0,
       },
@@ -344,30 +342,25 @@
         pinionGear === 0
       )
         return NaN;
-
       return (tyreDiameter * Math.PI) / (spurGear / pinionGear);
     }
 
     function findClosestPinion(tyreDiameter, spurGear, desiredRollout) {
       let closestPinion = 15;
       let closestDifference = Infinity;
-
       for (let pinion = 10; pinion <= 80; pinion++) {
         const rollout = calculateRollout(tyreDiameter, spurGear, pinion);
         const difference = Math.abs(rollout - desiredRollout);
-
         if (difference < closestDifference) {
           closestDifference = difference;
           closestPinion = pinion;
         }
       }
-
       return closestPinion;
     }
 
     function updateCalculations() {
       const { tyreDiameter, spurGear, pinionGear, desiredRollout } = appState.values;
-
       if (appState.mode === "standard") {
         if (
           !isNaN(tyreDiameter) &&
@@ -405,7 +398,6 @@
             spurGear,
             suggestedPinion
           );
-
           elements.suggestedPinion.textContent = suggestedPinion;
           elements.actualRollout.textContent = `Actual rollout: ${actualRollout.toFixed(
             2
@@ -456,9 +448,7 @@
         elements.standardResult.classList.add("hidden");
         elements.reverseResult.classList.remove("hidden");
       }
-
       const vals = appState.values;
-
       elements.tyreDiameter.value =
         vals.tyreDiameter !== null && vals.tyreDiameter !== undefined
           ? vals.tyreDiameter
@@ -473,7 +463,6 @@
         vals.desiredRollout !== null && vals.desiredRollout !== undefined
           ? vals.desiredRollout
           : "";
-
       updateLockButton(elements.tyreLock, appState.locks.tyre);
       updateLockButton(elements.spurLock, appState.locks.spur);
       updateLockStates();
@@ -587,7 +576,7 @@
         appState = {
           mode: "standard",
           locks: { tyre: false, spur: false },
-          values: { tyreDiameter: 42.5, spurGear: 87, pinionGear: 25, desiredRollout: 38.0 },
+          values: { tyreDiameter: 42.5, spurGear: 76, pinionGear: 25, desiredRollout: 38.0 }, // <-- Default changed to 76
         };
         updateUI();
       });
